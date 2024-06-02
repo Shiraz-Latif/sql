@@ -18,8 +18,10 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 
 _Hint, search type 1 vs type 2 slowly changing dimensions._
 
+Type-2 SCD - addresses are slowly chaging dimension. In type-2, we keep track of all historic changes using update date and get the latest version through lastversion_flag. 
 ![A1_03a_Type2.JPG](./images/A1_03a_Type2.JPG)
 
+Type-1 SCD - addresses are slowly chaging dimension. In type-1, any new change will overwrite the previous record, no history maintained. 
 ![A1_03b_Type1.JPG](./images/A1_03b_Type1.JPG)
 
 
