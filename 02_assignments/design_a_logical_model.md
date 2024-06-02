@@ -5,17 +5,29 @@ Create a logical model for a small bookstore. 📚
 
 At the minimum it should have employee, order, sales, customer, and book entities (tables). Determine sensible column and table design based on what you know about these concepts. Keep it simple, but work out sensible relationships to keep tables reasonably sized. Include a date table. There are several tools online you can use, I'd recommend [_Draw.io_](https://www.drawio.com/) or [_LucidChart_](https://www.lucidchart.com/pages/).
 
+![A1_01_ERD.JPG](./images/A1_01_ERD.JPG)
+
 ## Question 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
+
+![A1_02_shifts.JPG](./images/A1_02_shifts.JPG)
+
 
 ## Question 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2?
 
 _Hint, search type 1 vs type 2 slowly changing dimensions._
 
+Type-2 SCD - addresses are slowly chaging dimension. In type-2, we keep track of all historic changes using update date and get the latest version through lastversion_flag. 
+![A1_03a_Type2.JPG](./images/A1_03a_Type2.JPG)
+
+Type-1 SCD - addresses are slowly chaging dimension. In type-1, any new change will overwrite the previous record, no history maintained. 
+![A1_03b_Type1.JPG](./images/A1_03b_Type1.JPG)
+
+
 Bonus: Are there privacy implications to this, why or why not?
 ```
-Your answer...
+Address is considered as personally identifiable information hence there are privacy implications on customer addresses. For safety reason, it is recommended to mask the address fields. 
 ```
 
 ## Question 4
@@ -23,7 +35,12 @@ Review the AdventureWorks Schema [here](https://i.stack.imgur.com/LMu4W.gif)
 
 Highlight at least two differences between it and your ERD. Would you change anything in yours?
 ```
-Your answer...
+My database design is quite simple whereas Adventureworks is very much complicated and detailed design. Here are a few differences. 
+1. I used books table and added publisher and authors to get the details whereas in AW database, it is having higher details for a particular product, like category, sub-category, description, product document etc. 
+2. I did not maintained any cost history whereas AW is maintaing a complete cost history. 
+3. For addresses, I just used a single table whereas AW has further divided those into different tables like stateprovince table, emailaddress table, phone number, addresstype and other tables. 
+4. At a higher level, I kept everything in a single schema whereas AW divided the tables into 4 different schemas, Sales, Person, Production and Purchasing. 
+
 ```
 
 # Criteria
@@ -44,9 +61,9 @@ Your answer...
     * Open a private window in your browser. Copy and paste the link to your pull request into the address bar. Make sure you can see your pull request properly. This helps the technical facilitator and learning support staff review your submission easily.
 
 Checklist:
-- [ ] Create a branch called `model-design`.
-- [ ] Ensure that the repository is public.
-- [ ] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
-- [ ] Verify that the link is accessible in a private browser window.
+- [x] Create a branch called `model-design`.
+- [x] Ensure that the repository is public.
+- [x] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
+- [x] Verify that the link is accessible in a private browser window.
 
 If you encounter any difficulties or have questions, please don't hesitate to reach out to our team via our Slack at `#cohort-3-help`. Our Technical Facilitators and Learning Support staff are here to help you navigate any challenges.
